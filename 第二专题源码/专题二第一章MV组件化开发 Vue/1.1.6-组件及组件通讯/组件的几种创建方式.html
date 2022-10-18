@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <my-com1></my-com1>
+        <my-com2></my-com2>
+        <my-com3></my-com3>
+
+    </div>
+============================
+    <div id="app2">
+        <my-com2></my-com2>
+    </div>
+ 
+
+    <template id="myCom">
+        <div>这是template标签构建的组件</div>
+    </template>
+ 
+    <script type="text/x-template" id="myCom1">
+        <div>这是script标签构建的组件</div>
+    </script>
+ 
+    <script>
+
+        Vue.component('my-com1',{ //全局注册
+            template: '#myCom1'
+            // template: '<div>这是直接写字template属性值的</div>'
+        });
+
+         // <!-- /*创建组件*/ -->
+         var myCom3 = Vue.extend({
+            template: '<div>这是extend方式创建的组件</div>'
+        });
+        Vue.component('my-com3',myCom3 );
+        const option = {
+            components:{
+                'my-com2':{
+                    template: '#myCom'  //局部注册
+                }
+            }
+        }
+        var app1 = new Vue({...option,el: '#app1',});
+        
+        // 创建构造器
+        var Profile = Vue.extend({
+            ...option,
+            // template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
+            // data: function () {
+            //     return {
+            //         firstName: 'Walter',
+            //         lastName: 'White',
+            //         alias: 'Heisenberg'
+            //     }
+            // }
+        })
+        // 创建 Profile 实例，并挂载到一个元素上。
+        new Profile().$mount('#app2')
+
+
+
+
+    </script>
+</body>
+</html>

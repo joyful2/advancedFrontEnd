@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuex</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuex"></script>
+
+<body>
+    <div id="app">
+        <demo></demo>
+        <div>{{name}}</div>
+    </div>
+</body>
+<script>
+    Vue.use(Vuex);
+    console.log('Vuex.Store:',Vuex.Store);
+    var myStore = new Vuex.Store({
+    // var myStore = new Vuex.createStore({
+        state: {
+            //存放组件之间共享的数据
+            name: "Remi",
+            age: "18"
+        },
+
+        mutations: {
+            //显式的更改state里的数据
+        },
+        getters: {
+            //过滤提取state数据
+        },
+        actions: {
+            //异步处理
+        }
+    });
+    console.log('myStore:',myStore);
+
+
+    // Vue.component('demo', {
+    //     template: "<p>{{name}}</p>",
+    //     computed: {
+    //         name: function () {
+    //            console.log('this.$store:',this.$store);
+    //             return this.$store.state.name
+    //         }
+    //     },
+    //     mounted: function () {
+    //         console.log('com this: ',this)
+    //     }
+    // })
+    
+    new Vue({
+        el: "#app",
+        data: {
+            // name: "xiao"
+        },
+        store: myStore,
+        mounted: function () {
+            console.log('vue this: ',this)
+        },
+        computed: {
+            name() {
+               console.log('___this:',this);
+               console.log('___this.$store:',this.$store);
+                return this.$store.state.name
+            }
+        },
+    })
+</script>
+
+</html>

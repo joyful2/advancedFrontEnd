@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>1.1.7-插槽</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!--父组件-->
+    <template>
+      <!-- 具名slot -->
+      <v-two>
+        <div>这是匿名插槽的内容111</div>
+            <p slot="nav" slot-scope="{test}">我是导航 {{ test }} </p>
+            <!-- slot="operation"
+                    slot-scope="{ FormData }" -->
+ 
+
+            <p slot="footer">我是底部</p>
+            
+            <div>这是匿名插槽的内容222</div>
+
+            <p slot="main">我是内容</p>
+      </v-two>
+      
+    </template>  
+  </div>
+
+  <!-- 具名slot -->
+  <template id="two">
+    <div>
+      <nav>
+        <slot name="nav" test="joetest"></slot>
+      </nav>
+
+      <main>
+        <slot name="main"></slot>
+      </main>
+
+      <footer>
+        <slot name="footer"></slot>
+      </footer>
+
+      <slot></slot>
+
+    </div>
+  </template>
+
+
+  <script>
+    new Vue({
+        el: '#app',
+        components: {
+            'v-two': {
+                template: '#two',
+                data() {
+                    return {
+                        'two': 'I am two'
+                    }
+                }
+            }
+        }
+    });
+  </script>
+</body>
+
+</html>
