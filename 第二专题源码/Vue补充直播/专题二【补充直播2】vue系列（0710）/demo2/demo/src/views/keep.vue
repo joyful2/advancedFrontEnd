@@ -12,7 +12,7 @@ export default {
 
     }
   },
-  // todo  如下代码是干嘛的？
+  // todo  如下是keep-alive的原理（老师翻车没写完），待自己补充学习
 //   created(){
 //       //创建一个cache对象 缓存的容器 
 //       this.cache = Object.create(null)
