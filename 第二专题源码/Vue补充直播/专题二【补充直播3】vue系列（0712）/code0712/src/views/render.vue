@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    render组件
   <Button
   :type = "type"
   :text = "texts"

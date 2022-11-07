@@ -37,7 +37,9 @@ export default {
             on:{
                 click:this.handleClick
             }
-        })
+        },
+        this.$slots.default || this.text || '默认'
+)
     },
     methods:{
         handleClick(){

@@ -3,7 +3,15 @@
     <h1>{{msg}}</h1>
     <input placeholder="请输入值" v-model="value"/>
     <button @click="submit">提交</button>
+
     <vue-msg ref="msg"></vue-msg>
+    
+    <joe-btn type="primary" text='--aha' :handleClick="handleClick">提交</joe-btn>
+
+
+    <joe-msg ref="joeMsg"></joe-msg>
+    <render ></render>
+    
     <v-table
     :datas = "tableData"
     :thLabel = "thLabel"
@@ -13,11 +21,12 @@
 
 <script>
 // @ is an alias to /src
-
+import joeBtn from './renderBtn'
+import render from './render'
 export default {
   name: 'home',
   components: {
-
+    joeBtn,render
   },
   data(){
     return{
@@ -41,8 +50,18 @@ export default {
         ]
     }
   },
+  mounted(){
+    // console.log('this.$name:',this.$name);
+    // console.log('this.age:',this.age);
+    // this.sayHi(' cools')
+  },
   methods:{
+    handleClick(){
+      alert('?')
+    },
+    
     submit(){
+      this.$refs.joeMsg.alert('halo--')
       if(!this.value){
         this.$nextTick(()=>{
           this.$refs.msg.msgPlugin('值不能为空',500)
