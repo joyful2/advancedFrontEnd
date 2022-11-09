@@ -143,11 +143,25 @@ export default {
        },
 
        setCookie(userName,passWord,rememberMe,exDays){
-           let exDate = new Date(); //获取时间
-           exDate.setTime(exDate.getTime() + 24*60*60*exDays);  //保存的时间
-           window.document.cookie = "userName" + "=" + userName + ";" + exDate.toGMTString();
-           window.document.cookie = "passWord" + "=" + passWord + ";" + exDate.toGMTString();
-           window.document.cookie = "rememberMe" + "=" + rememberMe + ";" + exDate.toGMTString();
+
+
+
+        //   课堂上错误写法
+        // let exDate = new Date(); //获取时间
+        // exDate.setTime(exDate.getTime() + 24*60*60*exDays);  //保存的时间
+        // window.document.cookie = "userName" + "=" + userName + ";" +  "expires="+ exDate.toUTCString();
+
+        // window.document.cookie = "userName" + "=" + userName + ";" + exDate.toGMTString();
+        // window.document.cookie = "passWord" + "=" + passWord + ";" + exDate.toGMTString();
+        // window.document.cookie = "rememberMe" + "=" + rememberMe + ";" + exDate.toGMTString();
+
+        // 正确的写法：
+        let exDate = new Date(); //获取时间
+        exDate.setFullYear(2023);  //保存的时间
+        window.document.cookie = "userName" + "=" + userName + ";" + "expires="+ exDate.toUTCString();
+        window.document.cookie = "passWord" + "=" + passWord + ";" + "expires="+exDate.toGMTString();
+        window.document.cookie = "rememberMe" + "=" + rememberMe + ";" +"expires="+ exDate.toGMTString();
+
        },
        //清除cookie
        clearCookie(){
@@ -183,7 +197,6 @@ export default {
             code += random[charIndex];  //根据索引取得随机数加到code上
           }
           this.verifyText = code;
-        //   this.user.verifyCode = code;
       },
   },
   created(){
